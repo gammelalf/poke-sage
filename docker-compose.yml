@@ -1,0 +1,21 @@
+services:
+  postgres:
+    restart: unless-stopped
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    networks: [ network ]
+    env_file: [ .env ]
+    environment:
+      POSTGRES_DB: pokesage
+      POSTGRES_PASSWORD: pokesage
+    volumes:
+      - postgres:/var/lib/postgresql/data/
+    build:
+      dockerfile: build/dockerfiles/postgres.Dockerfile
+
+
+networks:
+  network:
+
+volumes:
+  postgres:
