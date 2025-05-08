@@ -744,13 +744,15 @@ dependencies = [
 [[package]]
 name = "galvyn"
 version = "0.1.0"
-source = "git+https://github.com/myOmikron/galvyn.git?rev=0126e94475475dcfc3694b052dd9aa9637a70bb0#0126e94475475dcfc3694b052dd9aa9637a70bb0"
+source = "git+https://github.com/myOmikron/galvyn.git?rev=aa37f232a62fea4d8440e5cdeb81ab978c851d5d#aa37f232a62fea4d8440e5cdeb81ab978c851d5d"
 dependencies = [
  "axum",
  "futures-lite",
  "galvyn-core",
  "galvyn-macros",
+ "openapiv3",
  "rorm",
+ "serde_json",
  "thiserror",
  "tokio",
  "tracing",
@@ -760,7 +762,7 @@ dependencies = [
 [[package]]
 name = "galvyn-core"
 version = "0.1.0"
-source = "git+https://github.com/myOmikron/galvyn.git?rev=0126e94475475dcfc3694b052dd9aa9637a70bb0#0126e94475475dcfc3694b052dd9aa9637a70bb0"
+source = "git+https://github.com/myOmikron/galvyn.git?rev=aa37f232a62fea4d8440e5cdeb81ab978c851d5d#aa37f232a62fea4d8440e5cdeb81ab978c851d5d"
 dependencies = [
  "async-trait",
  "axum",
@@ -788,7 +790,7 @@ dependencies = [
 [[package]]
 name = "galvyn-macros"
 version = "0.2.0"
-source = "git+https://github.com/myOmikron/galvyn.git?rev=0126e94475475dcfc3694b052dd9aa9637a70bb0#0126e94475475dcfc3694b052dd9aa9637a70bb0"
+source = "git+https://github.com/myOmikron/galvyn.git?rev=aa37f232a62fea4d8440e5cdeb81ab978c851d5d#aa37f232a62fea4d8440e5cdeb81ab978c851d5d"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1170,6 +1172,7 @@ checksum = "3954d50fe15b02142bf25d3b8bdadb634ec3948f103d04ffe3031bc8fe9d7058"
 dependencies = [
  "equivalent",
  "hashbrown",
+ "serde",
 ]
 
 [[package]]
@@ -1424,6 +1427,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d75b0bedcc4fe52caa0e03d9f1151a323e4aa5e2d78ba3580400cd3c9e2bc4bc"
 
 [[package]]
+name = "openapiv3"
+version = "2.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cc02deea53ffe807708244e5914f6b099ad7015a207ee24317c22112e17d9c5c"
+dependencies = [
+ "indexmap",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "ordered-float"
 version = "3.9.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1669,8 +1683,9 @@ checksum = "2b15c43186be67a4fd63bee50d0303afffcef381492ebe2c5d87f324e1b8815c"
 
 [[package]]
 name = "rorm"
-version = "0.6.4"
-source = "git+https://github.com/rorm-orm/rorm?tag=v0.7.0-pre-3#fc6920a00e58371ba06b4f9e5339046bd41f0dd1"
+version = "0.7.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "78d59f4555b60198f04a762c994aec4115d60d795728b3f62398141649e182a1"
 dependencies = [
  "futures-core",
  "linkme",
@@ -1688,8 +1703,9 @@ dependencies = [
 
 [[package]]
 name = "rorm-cli"
-version = "0.8.0"
-source = "git+https://github.com/rorm-orm/rorm?tag=v0.7.0-pre-3#fc6920a00e58371ba06b4f9e5339046bd41f0dd1"
+version = "0.8.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b01f83d958f9d8679307cc9161a4e68647108815c7c55de9f178da0f3e812d20"
 dependencies = [
  "anyhow",
  "clap",
@@ -1708,8 +1724,9 @@ dependencies = [
 
 [[package]]
 name = "rorm-db"
-version = "0.9.1"
-source = "git+https://github.com/rorm-orm/rorm?tag=v0.7.0-pre-3#fc6920a00e58371ba06b4f9e5339046bd41f0dd1"
+version = "0.10.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7bcab70d581ad189286ae2041a7ae7fda47b248d09253572add19d159dcd1997"
 dependencies = [
  "futures-core",
  "pin-project",
@@ -1723,8 +1740,9 @@ dependencies = [
 
 [[package]]
 name = "rorm-declaration"
-version = "0.4.0"
-source = "git+https://github.com/rorm-orm/rorm?tag=v0.7.0-pre-3#fc6920a00e58371ba06b4f9e5339046bd41f0dd1"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a07b32cc6a34d5c4ac8f01907830daad80ca14aa09ffea36db87fdb0647e4327"
 dependencies = [
  "ordered-float",
  "rustc_version",
@@ -1734,8 +1752,9 @@ dependencies = [
 
 [[package]]
 name = "rorm-macro"
-version = "0.8.2"
-source = "git+https://github.com/rorm-orm/rorm?tag=v0.7.0-pre-3#fc6920a00e58371ba06b4f9e5339046bd41f0dd1"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ade7fec12fcfc5fc81907fcc7d03d59f9cebc485468bca4f183e2bc883cc1510"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1745,8 +1764,9 @@ dependencies = [
 
 [[package]]
 name = "rorm-macro-impl"
-version = "0.1.0"
-source = "git+https://github.com/rorm-orm/rorm?tag=v0.7.0-pre-3#fc6920a00e58371ba06b4f9e5339046bd41f0dd1"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8a01219e6d1607bb7f9205a9d11afd8dc94585042d0d9ebe43c545776dbb2a59"
 dependencies = [
  "darling",
  "proc-macro2",
@@ -1756,8 +1776,9 @@ dependencies = [
 
 [[package]]
 name = "rorm-sql"
-version = "0.8.3"
-source = "git+https://github.com/rorm-orm/rorm?tag=v0.7.0-pre-3#fc6920a00e58371ba06b4f9e5339046bd41f0dd1"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "01dfd3a767dbd675fe31b0063848ef5f2e027afb66bf8250e9b3b33a152ddcb1"
 dependencies = [
  "chrono",
  "libsqlite3-sys",

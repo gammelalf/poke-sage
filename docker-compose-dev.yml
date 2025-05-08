@@ -1,0 +1,52 @@
+services:
+  nginx-dev:
+    restart: unless-stopped
+    stop_signal: SIGKILL # Because nginx would wait for websockets to be closed
+    depends_on: [ webserver-dev ]
+    networks: [ network ]
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - ./data/conf/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    build:
+      dockerfile: ./build/dockerfiles/nginx-dev.Dockerfile
+
+  webserver-dev:
+    labels:
+      - webserver
+    restart: unless-stopped
+    depends_on: [ postgres-dev ]
+    networks: [ network ]
+    env_file: [ .env ]
+    environment:
+      - RUST_LOG=${RUST_LOG-info,webserver=debug,rorm=debug,galvyn=debug}
+      - POSTGRES_DB=pokesage
+      - POSTGRES_HOST=postgres-dev
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=pokesage
+    volumes:
+      - ./webserver/migrations:/migrations
+    user: "${UID}:${GID}"
+    build:
+      dockerfile: ./build/dockerfiles/webserver-dev.Dockerfile
+
+  postgres-dev:
+    restart: unless-stopped
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    networks: [ network ]
+    env_file: [ .env ]
+    environment:
+      POSTGRES_DB: pokesage
+      POSTGRES_PASSWORD: pokesage
+    volumes:
+      - postgres:/var/lib/postgresql/data/
+    build:
+      dockerfile: build/dockerfiles/postgres.Dockerfile
+
+networks:
+  network:
+
+volumes:
+  postgres:

@@ -5,9 +5,9 @@ edition = "2024"
 
 [dependencies.galvyn]
 git = "https://github.com/myOmikron/galvyn.git"
-rev = "0126e94475475dcfc3694b052dd9aa9637a70bb0"
+rev = "aa37f232a62fea4d8440e5cdeb81ab978c851d5d"
 default-features = false
-features = ["rorm-all-drivers", "rorm-cli"]
+features = ["rorm-all-drivers", "rorm-cli", "openapi"]
 
 [dependencies]
 tokio = { version = "~1", features = ["full"] }

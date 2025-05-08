@@ -19,7 +19,7 @@ python3 -m venv venv
 venv/bin/pip install -r requirements.txt
 EOF
 
-COPY ./build/pokeapi/settings.py ./config/poke_sage.py
+COPY ./build/postgres/settings.py ./config/poke_sage.py
 
 RUN <<EOF
 set -e
