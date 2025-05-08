@@ -1,0 +1,14 @@
+[package]
+name = "webserver"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies.galvyn]
+git = "https://github.com/myOmikron/galvyn.git"
+rev = "0126e94475475dcfc3694b052dd9aa9637a70bb0"
+default-features = false
+features = ["rorm-all-drivers", "rorm-cli"]
+
+[dependencies]
+tokio = { version = "~1", features = ["full"] }
+clap = { version = "~4", features = ["derive"] }
